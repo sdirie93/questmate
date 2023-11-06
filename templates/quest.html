@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ quest.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <div class="quest-card-detail">
+        <h2>{{ quest.title }}</h2>
+        {% if quest.player %}
+            <p>Player: {{ quest.player }}</p>
+        {% endif %}
+        <p>Due: {{ quest.due_date }}</p>
+        <button onclick="window.history.back()">Go Back</button>
+    </div>
+</body>
+</html>

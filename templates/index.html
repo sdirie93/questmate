@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quest Mate</title>
+    <link rel="stylesheet" href="/static/style/style.css">
+</head>
+<body>
+    <h1>Quest Mate</h1>
+    <div id="quests-container">
+        {% for quest in quests %}
+            <div class="quest-card">
+                <h2>{{ quest.title }}</h2>
+                <p>Due: {{ quest.due_date }}</p>
+                {% if quest.progress %}
+                    <p>Progress: {{ quest.progress }}</p>
+                {% endif %}
+                {% if quest.player %}
+                    <p>Player: {{ quest.player }}</p>
+                {% endif %}
+                <a href="{{ url_for('quest', quest_id=quest.id) }}">View Quest</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

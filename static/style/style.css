@@ -1,22 +1,64 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /*light background */
 }
 
-#quests-container {
+#quests-container,
+#new-quest-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center; /* Centering quest cards */
+    padding: 20px;
 }
 
-.quest-card, .quest-card-detail {
+.quest-card,
+.quest-card-detail {
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 16px;
-    margin: 8px;
-    width: 200px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #fff; /* To stand out from the background */
 }
 
-.quest-card-detail {
-    width: auto;
+/* Adding styles for the form and inputs */
+form {
+    max-width: 300px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+input[type="text"],
+input[type="date"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+button {
+    background-color: #5cb85c; /* success color */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4cae4c; /* A shade darker for hover effect */
+}
+
+/* Less emphasis for the cancel button */
+button[type="button"] {
+    background-color: #f0ad4e; /* warning color */
+}
+
+button[type="button"]:hover {
+    background-color: #ec971f; /* A shade darker for hover effect */
 }
 
 a {
@@ -26,4 +68,17 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #quests-container {
+        flex-direction: column;
+    }
+
+    .quest-card,
+    .quest-card-detail {
+        width: auto;
+        margin: 10px;
+    }
 }

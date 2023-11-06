@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Quest</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+</head>
+<body>
+    <h1>Edit Quest</h1>
+    <form action="{{ url_for('update_quest', quest_id=quest.id) }}" method="post">
+        <!-- CSRF token hidden field should be included here if CSRF protection is enabled -->
+        <input type="hidden" name="quest_id" value="{{ quest.id }}"> <!-- Only if necessary -->
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ quest.title }}" required>
+        
+        <label for="due_date">Due Date:</label>
+        <input type="date" id="due_date" name="due_date" value="{{ quest.due_date }}" required>
+        
+        <label for="progress">Progress:</label>
+        <input type="text" id="progress" name="progress" value="{{ quest.progress }}">
+        
+        <label for="player">Player:</label>
+        <input type="text" id="player" name="player" value="{{ quest.player }}">
+        
+        <button type="submit">Update Quest</button>
+        <button type="button" onclick="window.history.back()">Cancel</button>
+    </form>
+</body>
+</html>

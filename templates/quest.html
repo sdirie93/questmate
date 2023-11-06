@@ -2,16 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ quest.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design meta tag -->
+    <title>{{ quest.title }} - Quest Detail</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
 </head>
 <body>
     <div class="quest-card-detail">
-        <h2>{{ quest.title }}</h2>
+        <h1>{{ quest.title }}</h1> <!-- Consider using h1 for the main title -->
         {% if quest.player %}
             <p>Player: {{ quest.player }}</p>
         {% endif %}
         <p>Due: {{ quest.due_date }}</p>
+        {% if quest.progress %}
+            <p>Progress: {{ quest.progress }}</p>
+        {% endif %}
+        <!-- Edit and Delete options if needed -->
+        <a href="{{ url_for('update_quest', quest_id=quest.id) }}">Edit Quest</a>
+
+        <!-- To include CSRF token in the form for security -->
+        
+        <form action="{{ url_for('delete_quest', quest_id=quest.id) }}" method="post">
+            <!-- CSRF hidden field here -->
+            <input type="submit" value="Delete Quest">
+        </form>
         <button onclick="window.history.back()">Go Back</button>
     </div>
 </body>

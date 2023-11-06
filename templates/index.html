@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Quest Mate</title>
-    <link rel="stylesheet" href="/static/style/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
 </head>
+
 <body>
     <h1>Quest Mate</h1>
+    <div id="new-quest-container">
+        <a href="{{ url_for('add_quest') }}">+ New Quest</a>
+    </div>
     <div id="quests-container">
         {% for quest in quests %}
-            <div class="quest-card">
-                <h2>{{ quest.title }}</h2>
-                <p>Due: {{ quest.due_date }}</p>
-                {% if quest.progress %}
-                    <p>Progress: {{ quest.progress }}</p>
-                {% endif %}
-                {% if quest.player %}
-                    <p>Player: {{ quest.player }}</p>
-                {% endif %}
-                <a href="{{ url_for('quest', quest_id=quest.id) }}">View Quest</a>
-            </div>
+        <div class="quest-card">
+            <h2>{{ quest.title }}</h2>
+            <p>Due: {{ quest.due_date }}</p>
+            {% if quest.progress %}
+            <p>Progress: {{ quest.progress }}</p>
+            {% endif %}
+            {% if quest.player %}
+            <p>Player: {{ quest.player }}</p>
+            {% endif %}
+            <a href="{{ url_for('quest', quest_id=quest.id) }}">View Quest</a>
+            <a href="{{ url_for('update_quest', quest_id=quest.id) }}">Edit</a>
+            <form action="{{ url_for('delete_quest', quest_id=quest.id) }}" method="post" class="delete-form">
+                <input type="submit" value="Delete">
+            </form>
+        </div>
         {% endfor %}
     </div>
 </body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        var deleteForms = document.querySelectorAll('.delete-form');
+        deleteForms.forEach(function(form){
+            form.onsubmit = function(){
+                return confirm('Are you sure you want to delete this quest?');
+            };
+        });
+    });
+</script>
+
 </html>

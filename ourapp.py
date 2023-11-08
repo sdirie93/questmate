@@ -195,15 +195,6 @@ def delete_mission(mission_id):
     db.session.commit()
     return redirect(url_for('list_missions', quest_id=mission.quest_id))
 
-# Route to display a specific quest by its ID
-@app.route('/quest/<int:quest_id>')
-def quest(quest_id):
-    quest = Quest.query.filter_by(id=quest_id).first()
-    if quest:
-        return render_template('quest.html', quest=quest)
-    else:
-        return "Quest not found", 404
-
 # Home route to display all quests, players, and missions
 @app.route('/')
 def index():
